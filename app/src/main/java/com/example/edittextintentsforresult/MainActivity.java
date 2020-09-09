@@ -37,20 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void randoms(View view) {
         float na= (float) ((Math.random()*(100+100+1))-100);
-        if(rnd.nextBoolean())
-        {
-            na = na*-1;
-        }
         float nb=(float) ((Math.random()*(100+100+1))-100);
-        if(rnd.nextBoolean())
-        {
-            nb = nb*-1;
-        }
         float nc=(float) ((Math.random()*(100+100+1))-100);
-        if(rnd.nextBoolean())
-        {
-            nc = nc*-1;
-        }
         numa.setText(String.valueOf(na));
         numb.setText(String.valueOf(nb));
         numc.setText(String.valueOf(nc));
