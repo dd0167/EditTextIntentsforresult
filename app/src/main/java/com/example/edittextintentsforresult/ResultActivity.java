@@ -13,8 +13,8 @@ public class ResultActivity extends AppCompatActivity {
 
     TextView res1;
     TextView res2;
-    Double result1;
-    Double result2;
+    float result1;
+    float result2;
     Intent gi;
     WebView graph;
     String url="https://www.google.com/";
@@ -32,14 +32,14 @@ public class ResultActivity extends AppCompatActivity {
         graph.setWebViewClient(new MyWebViewClient());
 
         gi=getIntent();
-        Double a=gi.getDoubleExtra("a",1);
-        Double b=gi.getDoubleExtra("b",1);
-        Double c=gi.getDoubleExtra("c",1);
+        float a=gi.getFloatExtra("a",1);
+        float b=gi.getFloatExtra("b",1);
+        float c=gi.getFloatExtra("c",1);
 
-        double determinant=b*b-4*a*c;
+        float determinant= (float) (b*b-4.0*a*c);
         if(determinant>0) {
-            result1=(-b+Math.sqrt(determinant))/(2*a);
-            result2=(-b-Math.sqrt(determinant))/(2*a);
+            result1= (float) ((-b+Math.sqrt(determinant))/(2*a));
+            result2= (float) ((-b-Math.sqrt(determinant))/(2*a));
             res1.setText(""+result1);
             res2.setText(""+result2);
             url="https://www.google.com/search?sxsrf=ALeKk02--xxQfe0fnVrePerQ_78viRKUkQ%3A1599293469365&ei=HUhTX7v1Fca4aaTcveAC&q="+a+"x%5E2%2B"+b+"*x%2B"+c+"&oq";
@@ -52,8 +52,8 @@ public class ResultActivity extends AppCompatActivity {
             url="https://www.google.com/search?sxsrf=ALeKk02--xxQfe0fnVrePerQ_78viRKUkQ%3A1599293469365&ei=HUhTX7v1Fca4aaTcveAC&q="+a+"x%5E2%2B"+b+"*x%2B"+c+"&oq";
         }
         else {
-            result1=9999999999.0;
-            result2=9999999999.0;
+            result1= (float) 9999999999.0;
+            result2= (float) 9999999999.0;
             res1.setText("error");
             res2.setText("error");
             url="https://www.computerhope.com/jargon/e/error.gif";

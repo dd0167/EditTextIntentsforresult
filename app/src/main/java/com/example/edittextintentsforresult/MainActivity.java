@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText numa;
@@ -17,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
     EditText numc;
     TextView resu1;
     TextView resu2;
-    double re1=0;
-    double re2=0;
+    float re1=0;
+    float re2=0;
+    Random rnd=new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void randoms(View view) {
-        int na = (int) ((Math.random()*(100+100+1))-100);
-        int nb = (int) ((Math.random()*(100+100+1))-100);
-        int nc = (int) ((Math.random()*(100+100+1))-100);
-        numa.setText(""+na);
-        numb.setText(""+nb);
-        numc.setText(""+nc);
+        float na= (float) ((Math.random()*(100+100+1))-100);
+        if(rnd.nextBoolean())
+        {
+            na = na*-1;
+        }
+        float nb=(float) ((Math.random()*(100+100+1))-100);
+        if(rnd.nextBoolean())
+        {
+            nb = nb*-1;
+        }
+        float nc=(float) ((Math.random()*(100+100+1))-100);
+        if(rnd.nextBoolean())
+        {
+            nc = nc*-1;
+        }
+        numa.setText(String.valueOf(na));
+        numb.setText(String.valueOf(nb));
+        numc.setText(String.valueOf(nc));
     }
 
     public void solve(View view) {
@@ -51,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            Double a=Double.parseDouble(nua);
-            Double b=Double.parseDouble(nub);
-            Double c=Double.parseDouble(nuc);
+            float a=Float.parseFloat(nua);
+            float b=Float.parseFloat(nub);
+            float c=Float.parseFloat(nuc);
             Intent re=new Intent(this,ResultActivity.class);
             re.putExtra("a",a);
             re.putExtra("b",b);
@@ -66,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int source, int good, @Nullable Intent data_back) {
         super.onActivityResult(source, good, data_back);
         if (data_back != null) {
-            re1=data_back.getDoubleExtra("result1",0);
-            re2=data_back.getDoubleExtra("result2",0);
+            re1=data_back.getFloatExtra("result1",0);
+            re2=data_back.getFloatExtra("result2",0);
             if (re1==9999999999.0 && re2==9999999999.0)
             {
                 resu1.setText("error");
